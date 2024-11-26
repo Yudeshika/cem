@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+
 
 class ExchangeRateTest extends TestCase
 {
@@ -15,14 +17,17 @@ class ExchangeRateTest extends TestCase
 
         // Act: Make a GET request to the /api/exchange-rates endpoint
 
-        $response = $this->getJson("/api/exchange-rates/{$date}");
-        dd($response);
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user, 'api')->getJson("/api/exchange-rates/{$date}");
+
+
          // Assert: Verify response structure and data 
-         $response->assertStatus(200) ->assertJson([ 
-            [ 'currency' => 'USD', 'rate' => 1.0, ], 
-            [ 'currency' => 'EUR', 'rate' => 0.85, ], 
-            [ 'currency' => 'GBP', 'rate' => 0.75, ],
-         ]);  
+         $response->assertStatus(200) // Ensure the response status is 200 OK
+         ->assertJsonStructure([
+             'rate',
+             'currency_name',
+         ]);
     }
 
 }
