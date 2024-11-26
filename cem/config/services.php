@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'currency' => [
+        'api_key' => env('CURRENCY_EXCHANGE_API_KEY', '053e3675fe6a40aeb98acb04a7d70d55'),
+        'base_url' => env('CURRENCY_EXCHANGE_URL', 'https://openexchangerates.org/api/'),
+    ],
 
 ];
