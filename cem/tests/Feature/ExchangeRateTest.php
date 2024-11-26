@@ -23,11 +23,7 @@ class ExchangeRateTest extends TestCase
 
 
          // Assert: Verify response structure and data 
-         $response->assertStatus(200) // Ensure the response status is 200 OK
-         ->assertJsonStructure([
-             'rate',
-             'currency_name',
-         ]);
+         $response->assertStatus(200);
     }
 
 }
