@@ -13,6 +13,21 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        //
+        $currencies = [
+            ['name' => 'LKR', 'symbol' => 'LKR'],
+            ['name' => 'EUR', 'symbol' => 'EUR'],
+            ['name' => 'GBP', 'symbol' => 'GBP'],
+            ['name' => 'JPY', 'symbol' => 'JPY'],
+            ['name' => 'AUD', 'symbol' => 'AUD'],
+            ['name' => 'CAD', 'symbol' => 'CAD'],
+            ['name' => 'CHF', 'symbol' => 'CHF'],
+            ['name' => 'CNY', 'symbol' => 'CNY'],
+            ['name' => 'INR', 'symbol' => 'INR'],
+            ['name' => 'BRL', 'symbol' => 'BRL']
+        ];
+
+        foreach ($currencies as $currency) {
+            Currency::create([ 'name' => $currency['name'], 'symbol' => $currency['symbol'], ]);
+        }
     }
 }
