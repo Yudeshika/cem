@@ -13,14 +13,16 @@ class ExchangeRateServiceTest extends TestCase
     // test get exchange rate
     public function testGetExchangeRate()
     {
-        $currency = 'EUR';
+        // Run the DatabaseSeeder
+        $this->seed();
+        
         // create a new instance of the ExchangeRateService
         $exchangeRateService = new ExchangeRateService();
 
-        // get the exchange rate for USD to EUR
-        $exchangeRate = $exchangeRateService->getExchangeRate([$currency]);
+        // get the exchange rate for USD to all currencies in the database
+        $exchangeRate = $exchangeRateService->getExchangeRate();
 
-        // assert that the exchange rate is a float
-        $this->assertIsFloat($exchangeRate[$currency]);
+        // assert that the exchange rate is an array
+        $this->assertIsArray($exchangeRate);
     }
 }

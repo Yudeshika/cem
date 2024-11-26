@@ -41,8 +41,11 @@ class ExchangeRateService
     //     // return $response['rates'][$currency];
     // }
 
-    public function getExchangeRate(array $symbols = ['GBP', 'JPY', 'EUR'], string $baseCurrency = 'USD')
+    public function getExchangeRate(string $baseCurrency = 'USD')
     {
+        // Get the list of currencies from the database
+        $currencies = Currency::all()->pluck('symbol')->toArray();
+
         // Prepare the URL and query parameters
         $url = $this->baseUrl . 'latest.json?app_id=' . $this->apiKey . '&base=' . $baseCurrency;
 
@@ -55,13 +58,13 @@ class ExchangeRateService
             $exchangeRates = $response->json()['rates'];
 
             // Filter the exchange rates based on the symbols and base currency
-            $filteredExchangeRates = array_filter($exchangeRates, function ($key) use ($symbols) {
-                return in_array($key, $symbols);
+            $filteredExchangeRates = array_filter($exchangeRates, function ($key) use ($currencies) {
+                return in_array($key, $currencies);
             }, ARRAY_FILTER_USE_KEY);
 
             return $filteredExchangeRates;  // Return the filtered exchange rates
         } else {
-            // Handle errors (e.g., log it or throw an exception)
+            // Handle errors 
             return [
                 'error' => 'Unable to fetch exchange rates. Please try again later.'
             ];

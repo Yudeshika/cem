@@ -9,4 +9,9 @@ class Currency extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'symbol'];
+
+    public function exchangeRates()
+    {
+        return $this->hasMany(ExchangeRate::class);
+    }
 }

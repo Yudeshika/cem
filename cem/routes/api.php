@@ -19,6 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// non authenticated api route for store currency
+//  authenticated api route for store currency
 Route::middleware('auth:api')->post('/currencies', [CurrencyController::class, 'store']);
+
+//  authenticated api route for get exchange rate
+Route::middleware('auth:api')->get('/exchange-rates/{date}', [CurrencyController::class, 'getExchangeRate']);
 
