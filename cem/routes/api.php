@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\ExchangeRateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->post('/currencies', [CurrencyController::class, 'store']);
 
 //  authenticated api route for get exchange rate
-Route::middleware('auth:api')->get('/exchange-rates/{date}', [CurrencyController::class, 'getExchangeRate']);
+Route::middleware('auth:api')->get('/exchange-rates/{date}', [ExchangeRateController::class, 'getExchangeRate']);
 

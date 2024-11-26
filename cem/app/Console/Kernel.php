@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         // schedule the job to exchange the rate every minute
-        $schedule->job(new ExchangeRateScheduler)->everyMinute();
+        $schedule->job(new ExchangeRateScheduler)->daily();
     }
 
     /**
