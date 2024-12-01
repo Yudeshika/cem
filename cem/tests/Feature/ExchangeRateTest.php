@@ -24,6 +24,7 @@ class ExchangeRateTest extends TestCase
 
          // Assert: Verify response structure and data 
          $response->assertStatus(200);
+        //  this one needs to be further improved to check the response data returned as an array
     }
 
 }
